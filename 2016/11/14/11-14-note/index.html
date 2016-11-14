@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>11-14-note | 秋千兔子</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前端Javascript高级第6天
+
+
+闭包科里化应用
+案例：
+
+闭包的优缺点
+
+缺点: 常驻内存，增大内存的开销，使用不当就会造成内存泄漏。
+优点：
+缓存
+实现封装性
+避免污染全局对象
+处理逻辑的连续性。
+
+
+
+
+应用
+
+参数复用
+延迟计算/执行
+提前返回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11-14-note">
+<meta property="og:url" content="http://yoursite.com/2016/11/14/11-14-note/index.html">
+<meta property="og:site_name" content="秋千兔子">
+<meta property="og:description" content="前端Javascript高级第6天
+
+
+闭包科里化应用
+案例：
+
+闭包的优缺点
+
+缺点: 常驻内存，增大内存的开销，使用不当就会造成内存泄漏。
+优点：
+缓存
+实现封装性
+避免污染全局对象
+处理逻辑的连续性。
+
+
+
+
+应用
+
+参数复用
+延迟计算/执行
+提前返回">
+<meta property="og:updated_time" content="2016-11-14T13:11:05.216Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11-14-note">
+<meta name="twitter:description" content="前端Javascript高级第6天
+
+
+闭包科里化应用
+案例：
+
+闭包的优缺点
+
+缺点: 常驻内存，增大内存的开销，使用不当就会造成内存泄漏。
+优点：
+缓存
+实现封装性
+避免污染全局对象
+处理逻辑的连续性。
+
+
+
+
+应用
+
+参数复用
+延迟计算/执行
+提前返回">
+  
+    <link rel="alternative" href="/atom.xml" title="秋千兔子" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/assets/img/R.ico">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/img/me.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">zeeRain</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">biu~ biu~ biu~</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/zeerain" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/1824550853" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">zeeRain</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/img/me.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">zeeRain</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">biu~ biu~ biu~</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zeerain" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/1824550853" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-11-14-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      11-14-note
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p><p style="border-bottom:1px solid #ccc;font-size:2.5em;font-weight:bold;">前端Javascript高级第6天</p><p></p>
+<hr>
+
+<h3 id="闭包科里化应用"><a href="#闭包科里化应用" class="headerlink" title="闭包科里化应用"></a>闭包科里化应用</h3><ol>
+<li><p>案例：</p>
+</li>
+<li><p>闭包的优缺点</p>
+<ul>
+<li>缺点: 常驻内存，增大内存的开销，使用不当就会造成内存泄漏。</li>
+<li>优点：<ul>
+<li>缓存</li>
+<li>实现封装性</li>
+<li>避免污染全局对象</li>
+<li>处理逻辑的连续性。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>应用</p>
+<ul>
+<li>参数复用</li>
+<li>延迟计算/执行</li>
+<li>提前返回<a id="more"></a>
+</li>
+</ul>
+</li>
+<li><p>作用域链：加强变量搜索原则的记忆</p>
+</li>
+<li><p>绘制作用域链的步骤</p>
+<ul>
+<li>全局作用域 为 0 级链。将在当前作用域上的变量、对象等数据，绘制在该链上。</li>
+<li>函数可以限定作用域，在绘制过程中，只要遇到函数，就在此基础上扩展一条新俩链，级别为 当前级别 + 1；</li>
+<li>重复2步骤，直到所有函数都扩展出了新链为止。</li>
+</ul>
+</li>
+<li><p>在变量搜索的时候，如果访问的是全局变量，那么会搜索整个作用域链。性能会降低。在实际开发时，可以将常用的全局对象<br> 传入局部变量内。<br> 在同级链上的变量，互相不能访问。</p>
+</li>
+<li><p>函数四种调用模式</p>
+<ul>
+<li>作用：确定this执向的</li>
+<li>普通函数执行模式：声明一个函数后，直接通过函数的名字调用。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// this -&gt; window</span></div><div class="line">&#125;</div><div class="line">foo(); <span class="comment">// 普通函数执行模式</span></div></pre></td></tr></table></figure>
+<pre><code>+ 构造函数模式： 通过 new 操作符 创建一个对象，此时该函数的执行模式为 构造函数模式
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// this -&gt; 构造函数创建出来的对象</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> fn; <span class="comment">// 构造函数执行模式</span></div><div class="line"><span class="keyword">var</span> ff = <span class="keyword">new</span> fn;</div></pre></td></tr></table></figure>
+<pre><code>+ 方法调用模式：通过对象来调用
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123;<span class="attr">say</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// this -&gt; 方法的调用者， 即对象o。</span></div><div class="line">&#125;&#125;;</div><div class="line">o.say(); <span class="comment">// 方法调用模式</span></div></pre></td></tr></table></figure>
+<pre><code>+ 上下文模式(call/apply模式):
+    - 作用：动态改变this的指向
+    - this -&gt; call|apply方法的第一个参数 
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>: <span class="string">"tom"</span>&#125;;</div><div class="line">print.call(obj); <span class="comment">// tom</span></div></pre></td></tr></table></figure>
+<ol>
+<li><p>call和apply的区别</p>
+<ul>
+<li><p>fn.call(thisObj, arg1, arg2, arg3, …argN);</p>
+<ul>
+<li>thisObj                           在fn函数内部的this指向（必需）</li>
+<li>arg1, arg2, arg3, …argN     函数fn在执行时，传入的实参。（可选）</li>
+</ul>
+</li>
+<li><p>fn.apply(thisObj, [array]);</p>
+<ul>
+<li>thisObj                           在fn函数内部的this指向（必需）</li>
+<li>数组对象                          将数组的所有元素值当做fn执行时的实参。（可选）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>上下文模式应用</p>
+<ul>
+<li><p>借用方法</p>
+<ul>
+<li>数组合并</li>
+<li>借用Math对象方法</li>
+<li>获取对象类型</li>
+<li>实现伪数组对象转换为真数组</li>
+</ul>
+</li>
+<li><p>实现借用构造函数继承</p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, gender, high</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">    <span class="keyword">this</span>.gender = gender;</div><div class="line">    <span class="keyword">this</span>.high = high;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Teacher</span>(<span class="params">name, age, gender, high, codeNo, cellphoneNo</span>) </span>&#123;</div><div class="line">    Person.apply(<span class="keyword">this</span>, <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">0</span>, <span class="number">4</span>));</div><div class="line">    <span class="keyword">this</span>.codeNo = codeNo;</div><div class="line">    <span class="keyword">this</span>.cellphoneNo = cellphoneNo;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> Teacher(<span class="string">'guojing'</span>, <span class="number">18</span>, <span class="string">'boy'</span>, <span class="string">'226'</span>, <span class="string">'91248'</span>, <span class="string">'13813813811'</span>);</div><div class="line"><span class="built_in">console</span>.log(t);</div></pre></td></tr></table></figure>
+<pre><code>+ 改变this指向
+</code></pre>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/14/11-14-note/" class="archive-article-date">
+  	<time datetime="2016-11-14T13:09:27.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-14</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/11/table/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">table</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="11-14-note" data-title="11-14-note" data-url="http://yoursite.com/2016/11/14/11-14-note/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zeerain"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 zeeRain
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/javaScript/" style="font-size: 10px;">javaScript</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/prototype对象/" style="font-size: 10px;">prototype对象</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/杂记/" style="font-size: 10px;">杂记</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">zeerain&lt;br&gt;&lt;br&gt;简介想了半天&lt;br/&gt;也不知道写啥&lt;br/&gt;&lt;br/&gt;反正没人看，干脆不写了，&lt;br&gt;哈哈哈哈哈，哈哈哈哈哈~</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
